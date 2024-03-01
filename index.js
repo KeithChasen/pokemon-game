@@ -38,8 +38,17 @@ collisionMap.forEach((row, i) => {
  const foregroundImage = new Image();
  foregroundImage.src = './img/pokemonMapTop.png';
 
- const playerImage = new Image();
- playerImage.src = './img/playerDown.png';
+ const playerUpImage = new Image();
+ playerUpImage.src = './img/playerUp.png';
+
+ const playerDownImage = new Image();
+ playerDownImage.src = './img/playerDown.png';
+
+ const playerLeftImage = new Image();
+ playerLeftImage.src = './img/playerLeft.png';
+
+ const playerRightImage = new Image();
+ playerRightImage.src = './img/playerRight.png';
 
  const background = new Sprite({
     position: { x: offset.x, y: offset.y },
@@ -57,9 +66,15 @@ collisionMap.forEach((row, i) => {
         x: canvas.width / 2 - 192 / 2,
         y: canvas.height / 2 - 68 / 10
     },
-    image: playerImage,
+    image: playerDownImage,
     frames: {
         max: 4
+    },
+    sprites: {
+        up: playerUpImage,
+        down: playerDownImage,
+        left: playerLeftImage,
+        right: playerRightImage
     }
  })
 
@@ -92,7 +107,11 @@ collisionMap.forEach((row, i) => {
 
     foreground.draw(c);
 
+    player.moving = false;
+
     if (keys.w.pressed) {
+        player.moving = true;
+        player.image = player.sprites.up;
         let moving = true;
         for (let i = 0; i < boundaries.length; i++) {
             const boundary = boundaries[i];
@@ -119,6 +138,8 @@ collisionMap.forEach((row, i) => {
         }
     }
     if (keys.s.pressed) {
+        player.moving = true;
+        player.image = player.sprites.down;
         let moving = true;
         for (let i = 0; i < boundaries.length; i++) {
             const boundary = boundaries[i];
@@ -145,6 +166,8 @@ collisionMap.forEach((row, i) => {
         
     }
     if (keys.a.pressed) {
+        player.moving = true;
+        player.image = player.sprites.left;
         let moving = true;
         for (let i = 0; i < boundaries.length; i++) {
             const boundary = boundaries[i];
@@ -171,6 +194,8 @@ collisionMap.forEach((row, i) => {
     }
 
     if (keys.d.pressed) {
+        player.moving = true;
+        player.image = player.sprites.right;
         let moving = true;
         for (let i = 0; i < boundaries.length; i++) {
             const boundary = boundaries[i];
