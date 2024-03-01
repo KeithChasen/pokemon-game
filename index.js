@@ -17,7 +17,9 @@ c.fillRect(0, 0, canvas.width, canvas.height);
  const playerImage = new Image();
  playerImage.src = './img/playerDown.png';
 
- image.onload = () => {
+ function animate() {
+    requestAnimationFrame(animate);
+
     c.drawImage(image, -950, -350);
     c.drawImage(
         playerImage, 
@@ -31,3 +33,22 @@ c.fillRect(0, 0, canvas.width, canvas.height);
         playerImage.height
     );
  }
+
+ animate();
+
+ window.addEventListener('keydown', e => {
+    switch(e.key) {
+        case 'w':
+            console.log('W');
+            break;
+        case 'a':
+            console.log('a');
+            break;
+        case 's':
+            console.log('s');
+            break;
+        case 'd':
+            console.log('d');
+            break;
+    }
+ })
