@@ -1,4 +1,4 @@
-console.log('works')
+console.log('works', collisions)
 
 const canvas = document.querySelector('canvas');
 
@@ -7,9 +7,14 @@ const c = canvas.getContext('2d');
 canvas.width = 1024;
 canvas.height = 576;
 
-c.fillStyle = 'white';
+let collisionMap = [];
+// 70 is the x size of the map
+// map -> resize map
+for (let i = 0; i < collisions.length; i+= 70) {
+    collisionMap = [...collisionMap, collisions.slice(i, i + 70)];
+}
 
-c.fillRect(0, 0, canvas.width, canvas.height);
+console.log(collisionMap, 'collisionMap')
 
  const image = new Image();
  image.src = './img/pokemonMap.png';
